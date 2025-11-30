@@ -6,6 +6,12 @@ beautifulsoup4>=4.12.0
 # Gemini AI (nouvelle API)
 google-genai>=1.0.0
 
+# Google Trends
+pytrends>=4.9.0
+
+# Charts / Visualisation
+matplotlib>=3.7.0
+
 # Utils
 python-dateutil>=2.8.0
 

@@ -26,11 +26,15 @@ jobs:
         run: |
           pip install -r scripts/requirements.txt
 
-      - name: 🔍 Scraper - News de la journée
+      - name: 🔍 Scraper - News, Trends & Sources Officielles
         run: |
           python scripts/scraper.py --mode evening
 
-      - name: 🤖 Gemini - Génération Récap Soir
+      - name: 📊 Génération Graphiques
+        run: |
+          python scripts/chart_generator.py
+
+      - name: 🤖 Gemini - Génération Récap Soir (CTA Dynamique)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
