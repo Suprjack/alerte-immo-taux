@@ -1,0 +1,121 @@
+{
+  "credit_types": [
+    {
+      "id": "courtier-immobilier",
+      "name": "Courtier Immobilier",
+      "title_template": "Meilleur Courtier Immobilier à {city} | Crédit Immo {year}",
+      "h1_template": "Courtier Immobilier à {city} : Trouvez le Meilleur Taux",
+      "meta_description": "🏠 Trouvez le meilleur courtier immobilier à {city}. Comparaison gratuite des taux de crédit immobilier. Obtenez votre prêt au meilleur taux en {year}.",
+      "keywords": ["courtier immobilier {city}", "crédit immobilier {city}", "taux immobilier {city}", "prêt immobilier {city}"],
+      "cta_text": "Comparer les taux gratuitement",
+      "cta_url": "/simulation-credit-immobilier",
+      "affiliate_default": "pretto",
+      "icon": "🏠",
+      "color": "#4CAF50",
+      "priority": 1
+    },
+    {
+      "id": "rachat-credit",
+      "name": "Rachat de Crédit",
+      "title_template": "Rachat de Crédit à {city} | Regroupez vos Crédits {year}",
+      "h1_template": "Rachat de Crédit à {city} : Réduisez vos Mensualités",
+      "meta_description": "💰 Rachat de crédit à {city}. Regroupez tous vos crédits en un seul et réduisez vos mensualités jusqu'à 60%. Simulation gratuite en 2 min.",
+      "keywords": ["rachat credit {city}", "regroupement credit {city}", "rachat pret {city}", "restructuration dette {city}"],
+      "cta_text": "Simuler mon rachat de crédit",
+      "cta_url": "/simulation-rachat-credit",
+      "affiliate_default": "solutis",
+      "icon": "💰",
+      "color": "#FF9800",
+      "priority": 2
+    },
+    {
+      "id": "credit-auto",
+      "name": "Crédit Auto",
+      "title_template": "Crédit Auto à {city} | Meilleur Taux Voiture {year}",
+      "h1_template": "Crédit Auto à {city} : Financez votre Véhicule au Meilleur Taux",
+      "meta_description": "🚗 Crédit auto à {city}. Comparez les offres de financement automobile et obtenez le meilleur taux pour votre voiture neuve ou occasion.",
+      "keywords": ["credit auto {city}", "pret voiture {city}", "financement auto {city}", "credit automobile {city}"],
+      "cta_text": "Simuler mon crédit auto",
+      "cta_url": "/simulation-credit-auto",
+      "affiliate_default": "younited",
+      "icon": "🚗",
+      "color": "#2196F3",
+      "priority": 3
+    },
+    {
+      "id": "pret-travaux",
+      "name": "Prêt Travaux",
+      "title_template": "Prêt Travaux à {city} | Financer vos Rénovations {year}",
+      "h1_template": "Prêt Travaux à {city} : Financez votre Rénovation",
+      "meta_description": "🔨 Prêt travaux à {city}. Financez vos travaux de rénovation, extension ou aménagement. Taux attractifs et simulation gratuite.",
+      "keywords": ["pret travaux {city}", "credit renovation {city}", "financement travaux {city}", "pret amenagement {city}"],
+      "cta_text": "Simuler mon prêt travaux",
+      "cta_url": "/simulation-pret-travaux",
+      "affiliate_default": "cetelem",
+      "icon": "🔨",
+      "color": "#795548",
+      "priority": 4
+    },
+    {
+      "id": "credit-professionnel",
+      "name": "Crédit Professionnel",
+      "title_template": "Crédit Professionnel à {city} | Financement Entreprise {year}",
+      "h1_template": "Crédit Professionnel à {city} : Financez votre Activité",
+      "meta_description": "💼 Crédit professionnel à {city}. Financement pour TPE, PME, artisans et commerçants. Obtenez votre prêt pro au meilleur taux.",
+      "keywords": ["credit professionnel {city}", "pret entreprise {city}", "financement pro {city}", "credit tpe {city}"],
+      "cta_text": "Demander un financement pro",
+      "cta_url": "/simulation-credit-pro",
+      "affiliate_default": "october",
+      "icon": "💼",
+      "color": "#9C27B0",
+      "priority": 5
+    },
+    {
+      "id": "assurance-pret",
+      "name": "Assurance Prêt",
+      "title_template": "Assurance Prêt Immobilier à {city} | Économisez {year}",
+      "h1_template": "Assurance Prêt Immobilier à {city} : Comparez et Économisez",
+      "meta_description": "🛡️ Assurance prêt immobilier à {city}. Comparez les assurances emprunteur et économisez jusqu'à 15 000€. Délégation d'assurance facile.",
+      "keywords": ["assurance pret {city}", "assurance emprunteur {city}", "delegation assurance {city}", "assurance credit {city}"],
+      "cta_text": "Comparer les assurances",
+      "cta_url": "/simulation-assurance-pret",
+      "affiliate_default": "magnolia",
+      "icon": "🛡️",
+      "color": "#E91E63",
+      "priority": 6
+    }
+  ],
+  "affiliates": {
+    "pretto": {
+      "name": "Pretto",
+      "url": "https://www.pretto.fr/?utm_source=alerte-immo",
+      "commission": "100-150€/lead"
+    },
+    "solutis": {
+      "name": "Solutis",
+      "url": "https://www.solutis.fr/?utm_source=alerte-immo",
+      "commission": "200-400€/dossier"
+    },
+    "younited": {
+      "name": "Younited Credit",
+      "url": "https://www.younited-credit.com/?utm_source=alerte-immo",
+      "commission": "50-100€/lead"
+    },
+    "cetelem": {
+      "name": "Cetelem",
+      "url": "https://www.cetelem.fr/?utm_source=alerte-immo",
+      "commission": "30-60€/lead"
+    },
+    "october": {
+      "name": "October",
+      "url": "https://october.eu/?utm_source=alerte-immo",
+      "commission": "1-2% du prêt"
+    },
+    "magnolia": {
+      "name": "Magnolia",
+      "url": "https://www.magnolia.fr/?utm_source=alerte-immo",
+      "commission": "50-80€/souscription"
+    }
+  }
+}
+
