@@ -1,4 +1,5 @@
 import './globals.css'
+import Script from 'next/script'
 
 export const metadata = {
   title: "L'Alerte Immo & Taux | Le Financial Insider",
@@ -6,9 +7,29 @@ export const metadata = {
   keywords: "taux immobilier, crédit immobilier, rachat de crédit, OAT 10 ans, Euribor",
 }
 
+// Google Analytics ID - à configurer dans Netlify env vars
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX';
+
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+      </head>
       <body className="min-h-screen">
         {/* Header */}
         <header className="border-b border-gray-800 py-4">

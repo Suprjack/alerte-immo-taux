@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Rewriter Gemini pour L'Alerte Immo & Taux
+Rewriter Gemini V3 pour L'Alerte Immo & Taux
 Persona: "L'Insider Whistleblower" - Expert financier rebelle et cynique
 
-V2: Avec CTA dynamique, maillage interne, Google Trends intégré
+V3: CTA dynamique, maillage interne, Google Trends, Forums FAQ, Prix par ville
 """
 
 import os
@@ -122,29 +122,36 @@ RÈGLES MAILLAGE INTERNE (IMPORTANT):
 
 
 def load_data():
-    """Charge toutes les données scrapées"""
-    rates = {}
-    news = []
-    trends = {}
-    official = []
+    """Charge toutes les données scrapées (V3 avec forums + prix)"""
+    data = {
+        "rates": {},
+        "news": [],
+        "trends": {},
+        "official": [],
+        "forums": {},
+        "city_prices": {},
+        "auctions": {}
+    }
 
-    rates_file = DATA_DIR / "rates.json"
-    if rates_file.exists():
-        rates = json.loads(rates_file.read_text())
+    files_map = {
+        "rates": "rates.json",
+        "news": "news.json",
+        "trends": "trends.json",
+        "official": "official.json",
+        "forums": "forums.json",
+        "city_prices": "city_prices.json",
+        "auctions": "auctions.json"
+    }
 
-    news_file = DATA_DIR / "news.json"
-    if news_file.exists():
-        news = json.loads(news_file.read_text())
+    for key, filename in files_map.items():
+        filepath = DATA_DIR / filename
+        if filepath.exists():
+            try:
+                data[key] = json.loads(filepath.read_text())
+            except:
+                pass
 
-    trends_file = DATA_DIR / "trends.json"
-    if trends_file.exists():
-        trends = json.loads(trends_file.read_text())
-
-    official_file = DATA_DIR / "official.json"
-    if official_file.exists():
-        official = json.loads(official_file.read_text())
-
-    return rates, news, trends, official
+    return data
 
 
 def get_rate_trend(rates):
@@ -227,6 +234,59 @@ def format_official_for_prompt(official):
     lines = ["🏛️ SOURCES OFFICIELLES (Service-Public, ANIL):"]
     for article in official[:2]:
         lines.append(f"- {article.get('title', 'Sans titre')}")
+
+    return "\n".join(lines)
+
+
+def format_forums_for_prompt(forums):
+    """Formate les questions des forums pour le prompt"""
+    if not forums or not forums.get("questions"):
+        return ""
+
+    lines = ["💬 QUESTIONS RÉELLES DES FORUMS (utilise-les pour une section FAQ):"]
+    for q in forums.get("questions", [])[:5]:
+        lines.append(f"- \"{q.get('question', '')}\"")
+
+    lines.append("\n👉 INTÈGRE AU MOINS 2 DE CES QUESTIONS DANS TON ARTICLE (section FAQ ou dans le texte)")
+
+    return "\n".join(lines)
+
+
+def format_city_prices_for_prompt(city_prices):
+    """Formate les prix par ville pour le prompt"""
+    if not city_prices or not city_prices.get("cities"):
+        return ""
+
+    lines = ["🏠 TENDANCES PRIX PAR VILLE (mentionne 1-2 villes):"]
+
+    # Top baisse (opportunité)
+    if city_prices.get("top_baisse"):
+        top = city_prices["top_baisse"]
+        lines.append(f"📉 BAISSE: {top.get('city', 'N/A')} ({top.get('trend_percent', 0):.1f}%) - Lien: [{top.get('city')}]({top.get('url', '/courtier-immobilier')})")
+
+    # Top hausse
+    if city_prices.get("top_hausse"):
+        top = city_prices["top_hausse"]
+        lines.append(f"📈 HAUSSE: {top.get('city', 'N/A')} ({top.get('trend_percent', 0):+.1f}%)")
+
+    # Opportunités
+    opps = city_prices.get("opportunities", [])[:3]
+    if opps:
+        lines.append(f"🔥 OPPORTUNITÉS ({len(opps)} villes en baisse >2%): {', '.join([o.get('city', '') for o in opps])}")
+
+    return "\n".join(lines)
+
+
+def format_auctions_for_prompt(auctions):
+    """Formate les enchères pour le prompt"""
+    if not auctions or not auctions.get("auctions"):
+        return ""
+
+    lines = ["⚖️ ENCHÈRES JUDICIAIRES (pour les investisseurs):"]
+    for auction in auctions.get("auctions", [])[:2]:
+        lines.append(f"- {auction.get('title', 'Bien')} - {auction.get('location', '')} - {auction.get('price', 'NC')}")
+
+    lines.append("👉 Mentionne les enchères comme opportunité pour investisseurs avertis")
 
     return "\n".join(lines)
 

@@ -1,6 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+// Supabase config
+const SUPABASE_URL = 'https://rhsrzffbeiqpciqanjvi.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJoc3J6ZmZiZWlxcGNpcWFuanZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ0MTU4NzYsImV4cCI6MjA3OTk5MTg3Nn0.-yZ8puHc-9wznPfd_3TxbF6fjitgcPX9hhnkzTkV2dA';
 
 export default function LeadForm({ creditType, city, creditName }) {
   const [formData, setFormData] = useState({
@@ -12,10 +16,34 @@ export default function LeadForm({ creditType, city, creditName }) {
   });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isLoading, setIsLoading] = useState(false);
+  const [utmParams, setUtmParams] = useState({});
+
+  // Capturer les UTM params au chargement (pour tracking campagnes)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      setUtmParams({
+        utm_source: urlParams.get('utm_source') || '',
+        utm_medium: urlParams.get('utm_medium') || '',
+        utm_campaign: urlParams.get('utm_campaign') || ''
+      });
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // Track conversion in Google Analytics
+  const trackConversion = () => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'generate_lead', {
+        event_category: 'Lead',
+        event_label: `${creditType} - ${city}`,
+        value: parseInt(formData.montant) || 0
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -23,30 +51,58 @@ export default function LeadForm({ creditType, city, creditName }) {
     setIsLoading(true);
     setStatus({ type: '', message: '' });
 
-    const leadData = {
-      ...formData,
-      creditType,
-      city,
-      creditName,
-      source: `${creditType}/${city}`,
-      timestamp: new Date().toISOString()
+    // Données pour Supabase (format BDD)
+    const supabaseData = {
+      first_name: formData.prenom,
+      last_name: formData.nom,
+      email: formData.email,
+      phone: formData.telephone,
+      amount: parseInt(formData.montant) || 0,
+      credit_type: creditType,
+      city: city,
+      source_page: typeof window !== 'undefined' ? window.location.pathname : '',
+      ...utmParams
     };
 
     try {
-      // Option 1: Envoyer vers Formspree (gratuit, 50 submissions/mois)
-      // Remplacer YOUR_FORM_ID par ton ID Formspree
-      const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xpwzgvpd';
+      // 1. Envoi vers Supabase (priorité - vraie BDD)
+      const supabaseResponse = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(supabaseData)
+      });
 
+      if (!supabaseResponse.ok) {
+        console.warn('Supabase backup failed, continuing with Formspree');
+      }
+
+      // 2. Envoi vers Formspree (backup email)
+      const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xpwzgvpd';
       const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(leadData)
+        body: JSON.stringify({
+          ...formData,
+          creditType,
+          city,
+          creditName,
+          source: `${creditType}/${city}`,
+          timestamp: new Date().toISOString()
+        })
       });
 
-      if (response.ok) {
-        // Aussi sauvegarder en localStorage pour backup local
+      if (response.ok || supabaseResponse.ok) {
+        // 3. Track conversion in GA
+        trackConversion();
+
+        // 4. Backup localStorage
         const existingLeads = JSON.parse(localStorage.getItem('leads') || '[]');
-        existingLeads.push({ ...leadData, id: `lead_${Date.now()}` });
+        existingLeads.push({ ...supabaseData, id: `lead_${Date.now()}` });
         localStorage.setItem('leads', JSON.stringify(existingLeads));
 
         setStatus({ type: 'success', message: '✅ Demande envoyée ! Un conseiller vous contactera rapidement.' });
@@ -57,7 +113,7 @@ export default function LeadForm({ creditType, city, creditName }) {
     } catch (error) {
       // Fallback: sauvegarder en localStorage seulement
       const existingLeads = JSON.parse(localStorage.getItem('leads') || '[]');
-      existingLeads.push({ ...leadData, id: `lead_${Date.now()}`, status: 'pending' });
+      existingLeads.push({ ...supabaseData, id: `lead_${Date.now()}`, status: 'pending' });
       localStorage.setItem('leads', JSON.stringify(existingLeads));
 
       setStatus({ type: 'success', message: '✅ Demande enregistrée ! Nous vous contacterons bientôt.' });
