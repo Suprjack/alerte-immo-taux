@@ -10,7 +10,7 @@ import argparse
 from datetime import datetime
 from pathlib import Path
 
-import google.generativeai as genai
+from google import genai
 
 # Configuration
 BASE_DIR = Path(__file__).parent.parent
@@ -122,20 +122,23 @@ def generate_article(mode="morning"):
     if not GEMINI_API_KEY:
         print("❌ GEMINI_API_KEY non définie!")
         return None
-    
-    genai.configure(api_key=GEMINI_API_KEY)
-    model = genai.GenerativeModel('gemini-1.5-flash')
-    
+
+    # Nouvelle API Google GenAI
+    client = genai.Client(api_key=GEMINI_API_KEY)
+
     rates, news = load_data()
     rates_str = format_rates_for_prompt(rates)
     news_str = format_news_for_prompt(news)
-    
+
     prompt = PROMPT_MORNING if mode == "morning" else PROMPT_EVENING
     prompt = prompt.format(rates_data=rates_str, news_data=news_str)
-    
+
     print(f"🤖 Génération article ({mode})...")
-    response = model.generate_content(prompt)
-    
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=prompt
+    )
+
     return response.text
 
 
