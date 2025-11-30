@@ -124,7 +124,7 @@ def generate_article(mode="morning"):
         return None
     
     genai.configure(api_key=GEMINI_API_KEY)
-    model = genai.GenerativeModel('gemini-1.5-pro')
+    model = genai.GenerativeModel('gemini-1.5-flash')
     
     rates, news = load_data()
     rates_str = format_rates_for_prompt(rates)
