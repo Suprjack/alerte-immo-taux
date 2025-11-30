@@ -5,7 +5,9 @@
     "published": "Wed, 26 Nov 2025 14:14:23 GMT",
     "summary": "<a href=\"https://news.google.com/rss/articles/CBMizAFBVV95cUxNZDdiME15UFJjVHcwS2JRZFE5NkpYckxiQThZUGNmVk1CRzQ0a0JOLXBCSGM4Z1JZSzNRRE0zeC1vXzZXN2ZmS2lHZjI0M3RYUS1JUjZWMWxWMUtaNGlxUU5QT3J6cHJxS015VHZzckhhOXBSSjRvZ3RlVkZCdE0tRU5vYnlKSWlsT2pKMW5BcXAyQlZiVWZibERLYXBFRUdIazJVSWVvT1JRT3R1MXZkOW15bndaeERqTW9Jd1pxdGtnbjE3bkNpOUQ4RkY?oc=5\" target=\"_blank\">Crédit immobilier : les nouveaux taux des banques en décembre, avant un virage en 2026 ?</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">MoneyVox</font>",
     "source": "Google News - Crédit Immobilier",
-    "category": "credit"
+    "category": "credit",
+    "priority": 1,
+    "official": false
   },
   {
     "title": "Marché immobilier : après le rebond, une année 2026 sous le signe du repli - Immo Matin",
@@ -13,7 +15,9 @@
     "published": "Wed, 26 Nov 2025 10:09:31 GMT",
     "summary": "<a href=\"https://news.google.com/rss/articles/CBMitAFBVV95cUxNdThFbE9LVmlhRzk1bmxnbWRMMjhLZzduRnJDVXIyZnJLdUE3dDlycUNXZHJvbk5YMlpMbVlRX0g3R3p3cF80MWpjQlZKd2dSRTU5YTBpNDkwMVMxSFVEZUJhRmpZLVdwWmxHUmo4YzVoQm9pY2tLOXYybzVva3JaVUthdE4yV1c4eDNnakZ6NU04d0Y0TUU3Vmo4amdSTTYzR3VwUmMteHhpbDBRSTNuT2ZVSk0?oc=5\" target=\"_blank\">Marché immobilier : après le rebond, une année 2026 sous le signe du repli</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Immo Matin</font>",
     "source": "Google News - Immobilier Prix",
-    "category": "prix"
+    "category": "prix",
+    "priority": 2,
+    "official": false
   },
   {
     "title": "Taux d'intérêt directeur de la Banque centrale européenne (en %) et indice mesurant la différence entre les banques déclarant resserrer et celles déclarant desserrer les conditions de crédit - Alternatives Economiques",
@@ -21,7 +25,9 @@
     "published": "Wed, 26 Nov 2025 08:00:00 GMT",
     "summary": "<a href=\"https://news.google.com/rss/articles/CBMi6AFBVV95cUxPQVdwbDdZQkdfSGxQV3dHVjB4MXNBX25Zb2I0S0ZITFk5M0ZjTENQTkdhVkRRVk5ERzJjQS1QenlDT2F1OUR5UHNsRi1YcVliRTRHeGZWOGJxamh6cXNzN2ZQOFpxa1lmQjJoVlJ0WHV4T1NBck4zWk9lVVB2WGVDLVE0dEhCWlplRktOMVYzb2dNWkR1RDNmWkxXZlE3X2YxUTFkenJ5VzNJeHRWRS10RXlIRjdXT1pwSVJVQjU0aS10Ujl5RXYzMXJtUXo4YWYwNmNDU2tyTXJHLWNFUmpLY0t2M0NnSUFB?oc=5\" target=\"_blank\">Taux d'intérêt directeur de la Banque centrale européenne (en %) et indice mesurant la différence entre les banques",
     "source": "Google News - BCE Taux",
-    "category": "bce"
+    "category": "bce",
+    "priority": 2,
+    "official": false
   },
   {
     "title": "2025-26 : stabilisation ou rebond du marché immobilier français ? - Meilleurs Agents",
@@ -29,14 +35,18 @@
     "published": "Wed, 12 Nov 2025 08:00:00 GMT",
     "summary": "<a href=\"https://news.google.com/rss/articles/CBMi0gFBVV95cUxPdEJvRFBkT0JpeVFJblNiTWhHajl3ektSV3JZRk9hR01Pc19GQ3JjUUV5ZUZJaFExeWx6ZlpCUGg3WWcxem9FZkFnenhZV0QxVlhVTlhnYTliWU1Dd01NUDZRUlFqcUF4RTJHN2szT0swdk1pblhjdnVDQkpHN05ua2VkOXp2UVVCR2hMVklYTlloeVpXa0VXQUQ5YzVVZ2VtTDhjbzlueDlYb2FRTE94Rml3UjMyYXBaUWh1M3FMaTlkWFFzRkNvTWQ0MnJHdlB4cXc?oc=5\" target=\"_blank\">2025-26 : stabilisation ou rebond du marché immobilier français ?</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Meilleurs Agents</font>",
     "source": "Google News - Immobilier Prix",
-    "category": "prix"
+    "category": "prix",
+    "priority": 2,
+    "official": false
   },
   {
-    "title": "Pourquoi la BCE a (encore) décidé de ne pas faire évoluer ses taux directeurs - Ouest-France",
-    "link": "https://news.google.com/rss/articles/CBMihgJBVV95cUxObVBLMC1kZmwxVXg2TkZFRnNQeVY5cHVJLVRqbDlLWktGYUdpVWpYWjV0bmZvOEQtbi1kRnIwdEltQTFxLV9GZkpuNE5KMndoQjFVX2VJbHE1OThqOEJoYkJrUndOSjRXR0NXWFlIN29vbFlkZGdXT2Y1dF9GRTdlYWxxR2J2Rm56VERRbFBzTldQZjVvMVg1NDRUWUIzM2tCOTMyQU40OEM1NHN4Ni0tTElCZlN4UHNkZDB3M3dNTVZERVEtOWJmR2F6NFJYYWlpMXRNUGFWSFg2TXU0QTBVZDNrdkMxUzRyME00WUR5djExSlVBNk5nVmw5dktRbWNzQXhHYUVn?oc=5",
-    "published": "Thu, 30 Oct 2025 07:00:00 GMT",
-    "summary": "<a href=\"https://news.google.com/rss/articles/CBMihgJBVV95cUxObVBLMC1kZmwxVXg2TkZFRnNQeVY5cHVJLVRqbDlLWktGYUdpVWpYWjV0bmZvOEQtbi1kRnIwdEltQTFxLV9GZkpuNE5KMndoQjFVX2VJbHE1OThqOEJoYkJrUndOSjRXR0NXWFlIN29vbFlkZGdXT2Y1dF9GRTdlYWxxR2J2Rm56VERRbFBzTldQZjVvMVg1NDRUWUIzM2tCOTMyQU40OEM1NHN4Ni0tTElCZlN4UHNkZDB3M3dNTVZERVEtOWJmR2F6NFJYYWlpMXRNUGFWSFg2TXU0QTBVZDNrdkMxUzRyME00WUR5djExSlVBNk5nVmw5dktRbWNzQXhHYUVn?oc=5\" target=\"_blank\">Pourquoi la BCE a (encore) décidé de ne pas faire évoluer ses taux directeu",
-    "source": "Google News - BCE Taux",
-    "category": "bce"
+    "title": "Notre analyse des taux immobiliers - Novembre 2025 - Meilleurtaux",
+    "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOVV8wS1ByWkNTblU2S1lmZ1Nyd3hMUkR1aEUyakRZVUtxQWdVV1R0MndRTWpEY2k2OWF3OTlPVkZPMWxiRW4wSW5Cb2pqQTFwanQxQVg2dEM0aER4QUl2dnNjWDFzRlZSSk5kdW5ndlAyQ1h1eXlqZEp4akFITEhjTUtETV9VRENmSjhYRjhySjhIYU85eFlNY2hFSG9EYWx5UHl3TVpvN0pxdHM1cFhnNElfVnBXck9HZVVj?oc=5",
+    "published": "Wed, 05 Nov 2025 08:00:00 GMT",
+    "summary": "<a href=\"https://news.google.com/rss/articles/CBMiuwFBVV95cUxOVV8wS1ByWkNTblU2S1lmZ1Nyd3hMUkR1aEUyakRZVUtxQWdVV1R0MndRTWpEY2k2OWF3OTlPVkZPMWxiRW4wSW5Cb2pqQTFwanQxQVg2dEM0aER4QUl2dnNjWDFzRlZSSk5kdW5ndlAyQ1h1eXlqZEp4akFITEhjTUtETV9VRENmSjhYRjhySjhIYU85eFlNY2hFSG9EYWx5UHl3TVpvN0pxdHM1cFhnNElfVnBXck9HZVVj?oc=5\" target=\"_blank\">Notre analyse des taux immobiliers - Novembre 2025</a>&nbsp;&nbsp;<font color=\"#6f6f6f\">Meilleurtaux</font>",
+    "source": "Google News - Taux Immobilier",
+    "category": "taux",
+    "priority": 1,
+    "official": false
   }
 ]

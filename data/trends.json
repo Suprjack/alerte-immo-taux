@@ -1,0 +1,36 @@
+{
+  "trending": [
+    {
+      "keyword": "crédit immobilier",
+      "score": 23,
+      "change": 11,
+      "rising": true
+    },
+    {
+      "keyword": "PTZ 2025",
+      "score": 0,
+      "change": 0,
+      "rising": false
+    },
+    {
+      "keyword": "taux usure",
+      "score": 0,
+      "change": 0,
+      "rising": false
+    },
+    {
+      "keyword": "renégociation prêt",
+      "score": 0,
+      "change": 0,
+      "rising": false
+    },
+    {
+      "keyword": "taux immobilier",
+      "score": 0,
+      "change": -15,
+      "rising": false
+    }
+  ],
+  "breakout": null,
+  "updated_at": "2025-11-30T06:39:46.765246"
+}
