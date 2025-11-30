@@ -2,33 +2,14 @@
   "oat_10y": {
     "name": "OAT 10 ans",
     "value": 3.12,
-    "change": 0.05,
-    "direction": "up"
+    "change": 0.0,
+    "direction": "stable"
   },
   "euribor_3m": {
     "name": "Euribor 3 mois",
     "value": 3.45,
-    "change": -0.02,
-    "direction": "down"
-  },
-  "taux_15y": {
-    "name": "Taux moyen 15 ans",
-    "value": 3.45,
-    "change": 0.03,
-    "direction": "up"
-  },
-  "taux_20y": {
-    "name": "Taux moyen 20 ans",
-    "value": 3.89,
-    "change": 0,
+    "change": 0.0,
     "direction": "stable"
   },
-  "taux_25y": {
-    "name": "Taux moyen 25 ans",
-    "value": 4.02,
-    "change": 0.01,
-    "direction": "up"
-  },
-  "updated_at": "2024-01-15T08:00:00Z"
+  "updated_at": "2025-11-30T06:13:40.344103"
 }
-
