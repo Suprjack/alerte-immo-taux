@@ -3,11 +3,12 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+import LeadForm from '@/components/LeadForm';
 
 // Types de crédit valides
 const CREDIT_TYPES = [
   'courtier-immobilier',
-  'rachat-credit', 
+  'rachat-credit',
   'credit-auto',
   'pret-travaux',
   'credit-professionnel',
@@ -117,17 +118,13 @@ export default async function CreditCityPage({ params }) {
           {data.population && <span>👥 {data.population.toLocaleString()} hab.</span>}
         </div>
         
-        {/* CTA Principal */}
-        <div className="bg-gradient-to-r from-green-600 to-green-500 rounded-xl p-6 mb-8">
-          <p className="text-white text-lg mb-4">
-            🎯 Obtenez le meilleur taux pour votre projet à {data.city}
-          </p>
-          <a 
-            href={data.cta_url}
-            className="inline-block bg-white text-green-600 font-bold px-8 py-3 rounded-lg hover:bg-gray-100 transition"
-          >
-            {data.cta_text} →
-          </a>
+        {/* Formulaire de Lead */}
+        <div className="mb-8">
+          <LeadForm
+            creditType={creditType}
+            city={data.city}
+            creditName={data.credit_name}
+          />
         </div>
         
         {/* Contenu Markdown */}
@@ -143,17 +140,13 @@ export default async function CreditCityPage({ params }) {
           dangerouslySetInnerHTML={{ __html: contentHtml }}
         />
         
-        {/* CTA Footer */}
-        <div className="mt-12 bg-gray-800 rounded-xl p-8 text-center">
-          <p className="text-xl text-white mb-4">
-            Prêt à trouver votre {data.credit_name.toLowerCase()} à {data.city} ?
-          </p>
-          <a 
-            href={data.cta_url}
-            className="inline-block bg-green-500 text-white font-bold px-8 py-4 rounded-lg hover:bg-green-600 transition text-lg"
-          >
-            {data.cta_text} →
-          </a>
+        {/* Second Formulaire de Lead en bas */}
+        <div className="mt-12">
+          <LeadForm
+            creditType={creditType}
+            city={data.city}
+            creditName={data.credit_name}
+          />
         </div>
       </main>
     </div>
