@@ -1,10 +1,16 @@
 {
   "trending": [
     {
-      "keyword": "crédit immobilier",
-      "score": 23,
-      "change": 11,
+      "keyword": "taux immobilier",
+      "score": 31,
+      "change": 12,
       "rising": true
+    },
+    {
+      "keyword": "crédit immobilier",
+      "score": 0,
+      "change": 0,
+      "rising": false
     },
     {
       "keyword": "PTZ 2025",
@@ -23,14 +29,8 @@
       "score": 0,
       "change": 0,
       "rising": false
-    },
-    {
-      "keyword": "taux immobilier",
-      "score": 0,
-      "change": -15,
-      "rising": false
     }
   ],
   "breakout": null,
-  "updated_at": "2025-11-30T06:39:46.765246"
+  "updated_at": "2025-11-30T07:12:42.220469"
 }
