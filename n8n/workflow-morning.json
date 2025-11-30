@@ -1,0 +1,59 @@
+{
+  "name": "Alerte Immo - Flash Matin (08h00)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "cronExpression", "expression": "0 8 * * *" }]
+        }
+      },
+      "name": "Trigger 08h00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /app/alerte_immo_taux && python3 scripts/scraper.py --mode morning"
+      },
+      "name": "1. Scraper Taux & News",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /app/alerte_immo_taux && python3 scripts/rewriter.py --mode morning"
+      },
+      "name": "2. Gemini Rewrite",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [650, 300],
+      "credentials": {
+        "note": "GEMINI_API_KEY doit être dans les variables d'environnement"
+      }
+    },
+    {
+      "parameters": {
+        "command": "cd /app/alerte_immo_taux && git add . && git commit -m '🌅 Flash Matin - {{$now.format(\"YYYY-MM-DD\")}}' && git push origin main"
+      },
+      "name": "3. Git Commit & Push",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "channel": "#alerts",
+        "text": "✅ Flash Matin publié! Site mis à jour."
+      },
+      "name": "4. Notification (optionnel)",
+      "type": "n8n-nodes-base.slack",
+      "position": [1050, 300],
+      "disabled": true
+    }
+  ],
+  "connections": {
+    "Trigger 08h00": { "main": [[{ "node": "1. Scraper Taux & News", "type": "main", "index": 0 }]] },
+    "1. Scraper Taux & News": { "main": [[{ "node": "2. Gemini Rewrite", "type": "main", "index": 0 }]] },
+    "2. Gemini Rewrite": { "main": [[{ "node": "3. Git Commit & Push", "type": "main", "index": 0 }]] },
+    "3. Git Commit & Push": { "main": [[{ "node": "4. Notification (optionnel)", "type": "main", "index": 0 }]] }
+  }
+}
+

@@ -1,0 +1,43 @@
+name: 🌅 Flash Matin (08h00)
+
+on:
+  schedule:
+    # Tous les jours à 8h (heure Paris = 7h UTC en hiver, 6h UTC en été)
+    - cron: '0 7 * * *'
+  workflow_dispatch: # Permet de lancer manuellement
+
+jobs:
+  morning-flash:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install dependencies
+        run: |
+          pip install -r scripts/requirements.txt
+
+      - name: 🔍 Scraper - Taux & News
+        run: |
+          python scripts/scraper.py --mode morning
+
+      - name: 🤖 Gemini - Génération Flash Matin
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python scripts/rewriter.py --mode morning
+
+      - name: 📤 Commit & Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "L'Insider Bot"
+          git add .
+          git diff --staged --quiet || git commit -m "🌅 Flash Matin - $(date +'%Y-%m-%d')"
+          git push
+

@@ -1,0 +1,56 @@
+{
+  "name": "Alerte Immo - Récap Soir (19h00)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "cronExpression", "expression": "0 19 * * *" }]
+        }
+      },
+      "name": "Trigger 19h00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /app/alerte_immo_taux && python3 scripts/scraper.py --mode evening"
+      },
+      "name": "1. Scraper News Journée",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /app/alerte_immo_taux && python3 scripts/rewriter.py --mode evening"
+      },
+      "name": "2. Gemini Rewrite",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /app/alerte_immo_taux && git add . && git commit -m '🌙 Récap Soir - {{$now.format(\"YYYY-MM-DD\")}}' && git push origin main"
+      },
+      "name": "3. Git Commit & Push",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "channel": "#alerts",
+        "text": "✅ Récap Soir publié! Site mis à jour."
+      },
+      "name": "4. Notification (optionnel)",
+      "type": "n8n-nodes-base.slack",
+      "position": [1050, 300],
+      "disabled": true
+    }
+  ],
+  "connections": {
+    "Trigger 19h00": { "main": [[{ "node": "1. Scraper News Journée", "type": "main", "index": 0 }]] },
+    "1. Scraper News Journée": { "main": [[{ "node": "2. Gemini Rewrite", "type": "main", "index": 0 }]] },
+    "2. Gemini Rewrite": { "main": [[{ "node": "3. Git Commit & Push", "type": "main", "index": 0 }]] },
+    "3. Git Commit & Push": { "main": [[{ "node": "4. Notification (optionnel)", "type": "main", "index": 0 }]] }
+  }
+}
+

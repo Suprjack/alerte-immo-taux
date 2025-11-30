@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --insider-yellow: #FFD700;
+  --insider-dark: #1a1a2e;
+  --insider-red: #e63946;
+  --insider-green: #2a9d8f;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0f0f1a;
+  color: #e0e0e0;
+}
+
+.headline {
+  font-family: Georgia, serif;
+}
+
+/* Alert Box - Le CTA jaune flashy */
+.alert-cta {
+  @apply bg-gradient-to-r from-yellow-500 to-yellow-400 text-black p-6 rounded-lg my-8;
+  @apply border-l-4 border-yellow-600 shadow-lg;
+}
+
+.alert-cta h3 {
+  @apply font-bold text-xl mb-2;
+}
+
+.alert-cta .btn {
+  @apply bg-black text-yellow-400 px-6 py-3 rounded-full font-bold mt-4 inline-block;
+  @apply hover:bg-gray-900 transition-all;
+}
+
+/* Ticker de taux */
+.rates-ticker {
+  @apply bg-insider-dark border-b border-gray-800 py-3 overflow-hidden;
+}
+
+.rate-badge {
+  @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium;
+}
+
+.rate-up {
+  @apply bg-red-900/50 text-red-400;
+}
+
+.rate-down {
+  @apply bg-green-900/50 text-green-400;
+}
+
+.rate-stable {
+  @apply bg-gray-800 text-gray-400;
+}
+
+/* Article cards */
+.article-card {
+  @apply bg-gray-900/50 border border-gray-800 rounded-xl p-6 hover:border-yellow-500/50 transition-all;
+}
+
+.article-card .tag {
+  @apply text-xs uppercase tracking-wider text-yellow-500 font-semibold;
+}
+
+.article-card h2 {
+  @apply text-xl font-bold mt-2 mb-3 leading-tight;
+}
+
+.article-card .excerpt {
+  @apply text-gray-400 text-sm line-clamp-3;
+}
+
+/* Urgence indicator */
+.urgence-high {
+  @apply border-l-4 border-red-500;
+}
+
+.urgence-medium {
+  @apply border-l-4 border-yellow-500;
+}
+
+/* Flash marché */
+.flash-market {
+  @apply bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-2xl mb-8;
+  @apply border border-gray-700;
+}
+
+.flash-market .timestamp {
+  @apply text-xs text-gray-500 uppercase tracking-widest;
+}
+
+.flash-market h1 {
+  @apply text-3xl font-bold mt-2 mb-4;
+}
+

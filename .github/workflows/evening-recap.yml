@@ -1,0 +1,43 @@
+name: 🌙 Récap Soir (19h00)
+
+on:
+  schedule:
+    # Tous les jours à 19h (heure Paris = 18h UTC en hiver, 17h UTC en été)
+    - cron: '0 18 * * *'
+  workflow_dispatch: # Permet de lancer manuellement
+
+jobs:
+  evening-recap:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout repo
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install dependencies
+        run: |
+          pip install -r scripts/requirements.txt
+
+      - name: 🔍 Scraper - News de la journée
+        run: |
+          python scripts/scraper.py --mode evening
+
+      - name: 🤖 Gemini - Génération Récap Soir
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python scripts/rewriter.py --mode evening
+
+      - name: 📤 Commit & Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "L'Insider Bot"
+          git add .
+          git diff --staged --quiet || git commit -m "🌙 Récap Soir - $(date +'%Y-%m-%d')"
+          git push
+
