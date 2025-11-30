@@ -6,10 +6,13 @@ on:
     - cron: '0 18 * * *'
   workflow_dispatch: # Permet de lancer manuellement
 
+permissions:
+  contents: write
+
 jobs:
   evening-recap:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: 📥 Checkout repo
         uses: actions/checkout@v4
